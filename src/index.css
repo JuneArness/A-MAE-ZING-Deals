@@ -1,0 +1,49 @@
+@import "tailwindcss";
+@import "@fontsource-variable/nunito";
+@import "@fontsource-variable/inter";
+
+/* ---------------------------------------------------------------------------
+   A MAE Zing Deals brand tokens. Change colors here and the whole site follows.
+   --------------------------------------------------------------------------- */
+@theme {
+  --color-ivory: #fbf8f1;        /* page background */
+  --color-cream: #f4efe3;        /* soft panels */
+  --color-sage-50: #eef3ea;
+  --color-sage-100: #dde7d6;     /* secondary surfaces */
+  --color-sage-300: #b6c9ab;
+  --color-forest: #2f5d46;       /* primary brand, buttons */
+  --color-forest-dark: #234635;
+  --color-forest-light: #4a7a60;
+  --color-coral: #c8694a;        /* promotional accent (decorative) */
+  --color-coral-dark: #a24f33;   /* accent text on light backgrounds (AA) */
+  --color-coral-50: #fbece6;
+  --color-charcoal: #2b2b2b;     /* body text */
+  --color-muted: #5f625c;        /* secondary text (AA on ivory) */
+  --color-line: #e4dfd3;         /* borders */
+  --font-heading: "Nunito Variable", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter Variable", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius-card: 1rem;
+}
+
+@layer base {
+  html { -webkit-text-size-adjust: 100%; }
+  body { @apply bg-ivory text-charcoal antialiased; font-family: var(--font-body); }
+  h1, h2, h3, h4 { font-family: var(--font-heading); @apply text-charcoal; }
+  :focus-visible { outline: 3px solid var(--color-coral); outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: var(--color-sage-100); }
+}
+
+/* Reusable building blocks (Tailwind v4 custom utilities) */
+@utility container-page { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+@utility btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 py-2.5 text-[0.95rem] font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-55; }
+@utility btn-primary { @apply btn bg-forest text-white hover:bg-forest-dark; }
+@utility btn-secondary { @apply btn border border-forest/30 bg-white text-forest hover:border-forest hover:bg-sage-50; }
+@utility btn-accent { @apply btn bg-coral-dark text-white hover:bg-[#8c4029]; }
+@utility btn-ghost { @apply btn text-forest hover:bg-sage-50; }
+@utility btn-danger { @apply btn border border-red-200 bg-white text-red-700 hover:bg-red-50; }
+@utility card { @apply rounded-[var(--radius-card)] border border-line bg-white; }
+@utility input { @apply block min-h-11 w-full rounded-xl border border-[#cfc9bb] bg-white px-3.5 py-2.5 text-base text-charcoal placeholder:text-[#8a8d86] focus:border-forest focus:outline-none focus:ring-3 focus:ring-forest/20; }
+@utility label { @apply mb-1.5 block text-sm font-semibold text-charcoal; }
+@utility field-error { @apply mt-1.5 text-sm font-medium text-red-700; }
+@utility chip { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold; }
+@utility section-title { @apply text-2xl font-extrabold tracking-tight sm:text-3xl; }

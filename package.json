@@ -1,0 +1,44 @@
+{
+  "name": "amaezing-deals",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:demo": "vite --mode demo",
+    "build": "tsc -b && vite build && node scripts/generate-sitemap.mjs",
+    "build:demo": "tsc -b && vite build --mode demo && node scripts/generate-sitemap.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc -b",
+    "seed": "node scripts/generate-seed.mjs",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "test:db": "node --test tests/db.test.mjs",
+    "test:unit": "vitest run",
+    "test:e2e": "python3 tests/e2e.py"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/nunito": "^5.3.0",
+    "@supabase/supabase-js": "^2.118.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.4",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.5.10",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "axe-core": "^4.14.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.4",
+    "vitest": "^5.0.5"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

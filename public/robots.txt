@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /cart
+Disallow: /checkout
+Disallow: /order/
+
+# Replace the address below with your live site address
+Sitemap: https://www.your-domain.com/sitemap.xml
