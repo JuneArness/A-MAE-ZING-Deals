@@ -88,6 +88,8 @@ export interface StoreSettings {
   policy_fulfillment: string;
   policy_payment: string;
   policies_reviewed: boolean;
+  founders: string;
+  about_text: string;
   updated_at?: string;
 }
 

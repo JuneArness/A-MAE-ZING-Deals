@@ -10,7 +10,7 @@ import { StoreProvider } from "./lib/store";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Home from "./pages/Home";
-import { Contact, NotConfigured, NotFoundPage, Policy } from "./pages/Info";
+import { About, Contact, NotConfigured, NotFoundPage, Policy } from "./pages/Info";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import Product from "./pages/Product";
 import Shop from "./pages/Shop";
@@ -21,7 +21,7 @@ const AdminApp = lazy(() => import("./admin/AdminApp"));
 export default function App() {
   if (!CONFIGURED) return <NotConfigured />;
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, "") || "/"}>
       <StoreProvider>
         <AuthProvider>
           <CartProvider>
@@ -38,6 +38,7 @@ export default function App() {
                   <Route path="order/:number" element={<OrderConfirmation />} />
                   <Route path="policies/:key" element={<Policy />} />
                   <Route path="contact" element={<Contact />} />
+                  <Route path="about" element={<About />} />
                   <Route path="*" element={<NotFoundPage />} />
                 </Route>
               </Routes>

@@ -181,6 +181,8 @@ create table public.store_settings (
   policy_fulfillment     text not null default '',
   policy_payment         text not null default '',
   policies_reviewed      boolean not null default false,
+  founders               text not null default 'Stephen A. Parks Jr. & Gina P. McCoy',
+  about_text             text not null default 'A MAE Zing Deals is owned and run by Stephen A. Parks Jr. and Gina P. McCoy, an engaged couple building a friendly neighborhood store for S.E. Grand Rapids. We started it to make everyday home essentials easy to find and easy on the budget.',
   updated_at             timestamptz not null default now()
 );
 insert into public.store_settings (id) values (1);

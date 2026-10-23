@@ -48,6 +48,11 @@ export interface Api {
   uploadLogo(file: Blob): Promise<string>;
 }
 
+/** Site folder on the host ("/" or "/A-MAE-ZING-Deals/"). */
+export const BASE: string = import.meta.env.BASE_URL;
+/** Turns "/brand/x.webp" into a path that works under BASE. */
+export const asset = (p: string) => BASE.replace(/\/$/, "") + p;
+
 export const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === "true";
 export const SUPABASE_URL = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim() ?? "";
 export const SUPABASE_ANON_KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim() ?? "";

@@ -51,6 +51,9 @@ async def main():
         check("tel links on phone numbers", await pg.locator('a[href="tel:+16167197033"]').count() >= 2 and await pg.locator('a[href="tel:+12698380075"]').count() >= 2)
         check("no fake ratings/testimonials", not re.search(r"\breviews?\b|\bratings?\b|testimonial|★", (await pg.locator("main").inner_text()).lower()))
 
+        await pg.goto(B + "/about")
+        check("about page names both founders", await seen(pg.get_by_role("heading", name="Stephen A. Parks Jr. & Gina P. McCoy")) and await seen(pg.locator("img[alt^='#ChooseHappiness']")))
+
         # ---------------------------------------------------------------- search & filters
         await pg.goto(B + "/shop?q=sponge")
         await expect(pg.locator("main ul li article").first).to_be_visible()
@@ -269,7 +272,7 @@ async def main():
         check("image still there after sign-out + reload", await seen(pg.locator("main img[alt='Owner Test Lint Roller']")))
 
         # ---------------------------------------------------------------- accessibility (axe-core) on key pages
-        for path in ["/", "/shop", "/product/lint-brush", "/cart", "/policies/privacy", "/contact", "/admin"]:
+        for path in ["/", "/shop", "/product/lint-brush", "/cart", "/policies/privacy", "/contact", "/about", "/admin"]:
             await pg.goto(B + path); await pg.wait_for_timeout(400)
             await pg.add_script_tag(content=AXE)
             r = await pg.evaluate("axe.run(document, {runOnly: ['wcag2a','wcag2aa']}).then(r => r.violations.map(v => v.id + ':' + v.nodes.length))")
@@ -282,11 +285,11 @@ async def main():
         await mp.goto(B + "/product/lint-brush"); await mp.locator("main").get_by_role("button", name="Add to cart", exact=True).click()
         for w in WIDTHS:
             await mp.set_viewport_size({"width": w, "height": 900})
-            for path in ["/", "/shop", "/category/kitchen", "/product/lint-brush", "/cart", "/checkout", "/contact", "/policies/returns", "/nope", "/admin"]:
+            for path in ["/", "/shop", "/category/kitchen", "/product/lint-brush", "/cart", "/checkout", "/contact", "/about", "/policies/returns", "/nope", "/admin"]:
                 await mp.goto(B + path); await mp.wait_for_timeout(120)
                 ov = await mp.evaluate("document.documentElement.scrollWidth - window.innerWidth")
                 if ov > 0: bad_w.append(f"{w}{path}:{ov}")
-        check("no sideways scrolling at 9 widths x 10 pages", not bad_w, ", ".join(bad_w[:8]))
+        check("no sideways scrolling at 9 widths x 11 pages", not bad_w, ", ".join(bad_w[:8]))
 
         # mobile menu dialog
         await mp.set_viewport_size({"width": 390, "height": 844}); await mp.goto(B + "/")

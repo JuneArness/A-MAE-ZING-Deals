@@ -37,6 +37,8 @@ export const DEFAULT_SETTINGS: StoreSettings = {
   policy_fulfillment: "",
   policy_payment: "",
   policies_reviewed: false,
+  founders: "Stephen A. Parks Jr. & Gina P. McCoy",
+  about_text: "A MAE Zing Deals is owned and run by Stephen A. Parks Jr. and Gina P. McCoy, an engaged couple building a friendly neighborhood store for S.E. Grand Rapids. We started it to make everyday home essentials easy to find and easy on the budget.",
 };
 
 export type PolicyKey = "privacy" | "returns" | "cancellation" | "fulfillment" | "payment";

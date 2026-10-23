@@ -32,6 +32,7 @@ export default function Home() {
       "@context": "https://schema.org", "@type": "Store", name: settings.legal_name, slogan: settings.slogan, url: absoluteUrl("/"),
       telephone: [settings.phone_primary, settings.phone_secondary].filter(Boolean),
       areaServed: settings.service_area, paymentAccepted: "Cash App, Venmo, Cash", logo: absoluteUrl("/apple-touch-icon.png"),
+      founder: settings.founders.split(/\s*(?:&|\band\b)\s*/).filter(Boolean).map((name) => ({ "@type": "Person", name })),
     },
   });
 

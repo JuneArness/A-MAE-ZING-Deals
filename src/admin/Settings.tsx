@@ -93,6 +93,11 @@ export default function Settings() {
           </div>
         </Section>
 
+        <Section id="about" title="About page" intro="Shown on the About page with the #ChooseHappiness logo.">
+          {text("founders", "Founders", { max: 200 })}
+          {text("about_text", "Your story", { area: true, max: 3000 })}
+        </Section>
+
         <Section id="announcement" title="Announcement bar">
           {check("announcement_enabled", "Show the announcement bar")}
           {text("announcement", "Message", { max: 160 })}

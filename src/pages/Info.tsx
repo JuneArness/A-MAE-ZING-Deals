@@ -1,3 +1,4 @@
+import { asset } from "../lib/api";
 // Policies, contact page, 404 page and "store not connected" page.
 import { Link, useParams } from "react-router-dom";
 import { Icon, Notice } from "../components/ui";
@@ -30,6 +31,30 @@ export function Policy() {
           {settings.venmo_username && <li><b>Venmo:</b> {settings.venmo_username}</li>}
         </ul>
       )}
+    </div>
+  );
+}
+
+export function About() {
+  const { settings } = useStore();
+  useSeo({ title: `About Us | ${settings.store_name}`, description: `Meet ${settings.founders}, the founders of ${settings.legal_name} in ${settings.service_area}.`, path: "/about" });
+  return (
+    <div className="container-page max-w-4xl py-10">
+      <div className="grid items-center gap-8 md:grid-cols-[1fr_16rem]">
+        <div>
+          <p className="text-sm font-bold uppercase tracking-wider text-coral-dark">Meet the founders</p>
+          <h1 className="mt-1 text-3xl font-black tracking-tight sm:text-4xl">{settings.founders}</h1>
+          <p className="mt-4 whitespace-pre-line text-lg leading-relaxed">{settings.about_text}</p>
+          <p className="mt-6 text-2xl font-black text-forest" style={{ fontFamily: "var(--font-heading)" }}>#ChooseHappiness</p>
+        </div>
+        <img src={asset("/brand/choose-happiness-badge.webp")} alt="#ChooseHappiness, A MAE Zing Deals: round badge with a glowing orange sunset" width={480} height={480} className="mx-auto w-56 md:w-full" />
+      </div>
+      <div className="mt-10 grid gap-4 sm:grid-cols-3">
+        {[["Everyday essentials", "Practical home basics, mostly priced from $1 to $20."], ["Local and personal", `Serving ${settings.service_area}. Call or text us any time.`], ["Simple payment", "Cash App, Venmo or cash, confirmed with you before you pay."]].map(([t, d]) => (
+          <div key={t} className="card p-5"><h2 className="text-lg font-extrabold">{t}</h2><p className="mt-1 text-muted">{d}</p></div>
+        ))}
+      </div>
+      <div className="mt-8 flex flex-wrap gap-3"><Link to="/shop" className="btn-primary">Shop all deals</Link><Link to="/contact" className="btn-secondary">Contact us</Link></div>
     </div>
   );
 }

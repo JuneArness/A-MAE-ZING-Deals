@@ -15,7 +15,7 @@ Built by SAP Development Solutions, LLC.
 
 | Area | Status |
 | --- | --- |
-| Storefront, cart, checkout, order confirmation | **Built and tested** in preview mode (70 automated browser checks) |
+| Storefront, cart, checkout, order confirmation | **Built and tested** in preview mode (72 automated browser checks) |
 | Database, security rules, order logic | **Built and tested** on a real Postgres engine (17 automated checks) |
 | Owner dashboard: products, photos, categories, orders, settings, CSV | **Built and tested** in preview mode |
 | Supabase project (database, logins, photo storage) | **You create it** (free); steps below. Not yet connected to a real project. |
@@ -55,7 +55,7 @@ On the real store, **sample listings can't be ordered** until you switch that on
 ```text
 amaezing-deals/
 ├── src/
-│   ├── pages/            Storefront: Home, Shop/Category, Product, Cart, Checkout, Order confirmation, Policies, Contact, 404
+│   ├── pages/            Storefront: Home, Shop/Category, Product, Cart, Checkout, Order confirmation, Policies, About, Contact, 404
 │   ├── admin/            Owner dashboard: Overview, Products + editor + photos, Categories, Orders, Settings, Import/Export
 │   ├── components/       Shared UI: header/footer layout, logo, product card, dialogs
 │   ├── lib/
@@ -213,6 +213,17 @@ The dashboard's **Overview** page lists what's still missing.
 
 ---
 
+### #ChooseHappiness brand files
+
+`public/brand/` holds the **#ChooseHappiness** logo made from the founders' sunset photo:
+- the round seal badge, used on the About page;
+- the "#Choose Happiness" wordmark with the sunset "o", used in the footer;
+- `choose-happiness-badge.svg`, the seal as a vector file for signs and print (text is outlined, so no fonts are needed).
+
+The full logo set (emblem, seals, wordmarks, square icon) is delivered separately as `ChooseHappiness-logos-v2.zip`.
+
+The founders' names and story on the About page are edited in **Admin → Settings → About page**.
+
 ## 6. Running the store day to day
 
 - **New order:** it appears under **Orders** (and on the Overview) as *Pending confirmation*.
@@ -250,7 +261,7 @@ The dashboard's **Overview** page lists what's still missing.
 npm run typecheck   # TypeScript
 npm run test:db     # database tests (real Postgres via PGlite): 17 checks
 npm run build:demo && npx vite preview --mode demo --port 4173   # then, in a second terminal:
-npm run test:e2e    # browser tests (needs: pip install playwright && playwright install chromium): 70 checks
+npm run test:e2e    # browser tests (needs: pip install playwright && playwright install chromium): 72 checks
 ```
 
 ### What the tests cover

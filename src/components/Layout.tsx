@@ -1,3 +1,4 @@
+import { asset } from "../lib/api";
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { POLICY_TITLES, type PolicyKey } from "../data/defaults";
@@ -53,6 +54,7 @@ function MobileMenu({ open, onClose }: { open: boolean; onClose: () => void }) {
             <li key={c.id}><Link to={`/category/${c.slug}`} onClick={onClose} className="flex min-h-12 items-center rounded-xl px-3 hover:bg-sage-100">{c.name}</Link></li>
           ))}
           <li><Link to="/shop?max=5" onClick={onClose} className="flex min-h-12 items-center rounded-xl px-3 font-semibold text-coral-dark hover:bg-sage-100">Deals under $5</Link></li>
+          <li><Link to="/about" onClick={onClose} className="flex min-h-12 items-center rounded-xl px-3 hover:bg-sage-100">About us</Link></li>
           <li><Link to="/contact" onClick={onClose} className="flex min-h-12 items-center rounded-xl px-3 hover:bg-sage-100">Contact &amp; pickup</Link></li>
         </ul>
       </nav>
@@ -128,6 +130,7 @@ export function Layout() {
             <span className="inline-flex rounded-2xl bg-ivory px-3 py-2"><Logo size={38} /></span>
             <p className="text-sm text-[#cfdccb]">{settings.slogan}</p>
             <p className="text-sm text-[#cfdccb]">Quality everyday essentials. Affordable prices. Local convenience.</p>
+            <Link to="/about" className="block w-fit rounded-xl"><img src={asset("/brand/choose-happiness.webp")} alt="#ChooseHappiness. Meet the founders" width={400} height={198} loading="lazy" className="h-16 w-auto" /></Link>
           </div>
           <div>
             <h2 className="mb-3 text-sm font-extrabold uppercase tracking-wider text-white">Shop</h2>
@@ -151,6 +154,7 @@ export function Layout() {
               ))}
               {settings.email && <li><a className="hover:underline" href={`mailto:${settings.email}`}>{settings.email}</a></li>}
               <li><Link className="hover:underline" to="/contact">Pickup &amp; contact details</Link></li>
+              <li><Link className="hover:underline" to="/about">About the founders</Link></li>
             </ul>
             {socials.length > 0 && (
               <ul className="mt-4 flex flex-wrap gap-2 text-sm">
